@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Timepaper – How to use</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0f0f0f;
+      color: #e0e0e0;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.7;
+      padding: 48px 24px;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 48px;
+      border-bottom: 1px solid #222;
+      padding-bottom: 32px;
+    }
+
+    header h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+    }
+
+    header h1 span { color: #f0a500; }
+
+    header p {
+      margin-top: 10px;
+      color: #888;
+      font-size: 1rem;
+    }
+
+    /* ── Accordéon ── */
+    details {
+      border: 1px solid #222;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    details[open] { border-color: #f0a500; }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 18px 22px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #ffffff;
+      background: #161616;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+      transition: background 0.2s;
+    }
+
+    summary:hover { background: #1e1e1e; }
+
+    summary::-webkit-details-marker { display: none; }
+
+    summary::after {
+      content: '›';
+      font-size: 1.3rem;
+      color: #f0a500;
+      transition: transform 0.25s;
+      display: inline-block;
+    }
+
+    details[open] summary::after { transform: rotate(90deg); }
+
+    .detail-body {
+      padding: 22px 22px 24px;
+      background: #111;
+    }
+
+    /* ── Typo ── */
+    p { color: #b0b0b0; margin-bottom: 12px; }
+
+    ul {
+      list-style: none;
+      margin-bottom: 12px;
+    }
+
+    ul li {
+      color: #b0b0b0;
+      padding: 5px 0 5px 20px;
+      position: relative;
+    }
+
+    ul li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: #f0a500;
+    }
+
+    .code {
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-family: 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.88rem;
+      color: #f0a500;
+      margin: 10px 0 16px;
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    .note {
+      background: #1a1a1a;
+      border-left: 3px solid #f0a500;
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      margin: 14px 0;
+      color: #999;
+      font-size: 0.88rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 16px;
+      font-size: 0.9rem;
+    }
+
+    th {
+      text-align: left;
+      color: #f0a500;
+      font-weight: 600;
+      padding: 10px 14px;
+      border-bottom: 1px solid #2a2a2a;
+    }
+
+    td {
+      padding: 10px 14px;
+      color: #b0b0b0;
+      border-bottom: 1px solid #1e1e1e;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    /* ── Bouton install ── */
+    .install-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #f0a500;
+      color: #0f0f0f;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn:hover { background: #ffb830; transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+
+    .btn-icon { font-size: 1rem; }
+
+    .or { color: #555; font-size: 0.85rem; }
+
+    footer {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid #222;
+      color: #444;
+      font-size: 0.8rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header>
+      <h1>Time<span>paper</span></h1>
+      <p>Automatic time-based wallpaper changer for Windows — no config files, no UI clutter.</p>
+    </header>
+
+    <!-- 1. Requirements -->
+    <details>
+      <summary>Requirements &amp; Installation</summary>
+      <div class="detail-body">
+        <p>Python 3.10 or later must be installed. Then install the dependencies using one of the two methods below:</p>
+        <ul>
+          <li>Double-click <strong>install.bat</strong> in the Timepaper folder — it runs automatically</li>
+          <li>Or run this command in a terminal:</li>
+        </ul>
+        <div class="code">pip install -r requirements.txt</div>
+      </div>
+    </details>
+
+    <!-- 2. How it works -->
+    <details>
+      <summary>How it works</summary>
+      <div class="detail-body">
+        <p>
+          Timepaper reads image files from the <code style="color:#f0a500">wallpapers/</code> folder.
+          Each file is named after the time it should appear. When that time is reached,
+          Timepaper automatically sets it as your desktop wallpaper.
+        </p>
+        <p>
+          At startup, it immediately applies the wallpaper that should currently be active
+          based on your schedule, then sleeps precisely until the next scheduled change — no constant polling, no CPU waste.
+        </p>
+        <div class="note">
+          PNG files are automatically converted to high-quality JPEG before being applied.
+          This avoids color degradation that Windows introduces when handling PNGs natively.
+        </div>
+      </div>
+    </details>
+
+    <!-- 3. Naming -->
+    <details>
+      <summary>Naming your images</summary>
+      <div class="detail-body">
+        <p>
+          Rename each image to <strong>HH,MM</strong> — use a comma instead of a colon,
+          since Windows does not allow colons in filenames.
+        </p>
+        <table>
+          <thead>
+            <tr><th>Filename</th><th>Triggers at</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>08,00.jpg</td><td>08:00 (8 AM)</td></tr>
+            <tr><td>11,00.png</td><td>11:00 (11 AM)</td></tr>
+            <tr><td>18,00.jpg</td><td>18:00 (6 PM)</td></tr>
+            <tr><td>21,00.png</td><td>21:00 (9 PM)</td></tr>
+          </tbody>
+        </table>
+        <p>Supported formats: <strong>.jpg, .jpeg, .png, .bmp</strong> — no limit on the number of images.</p>
+      </div>
+    </details>
+
+    <!-- 4. Running -->
+    <details>
+      <summary>Running Timepaper</summary>
+      <div class="detail-body">
+        <p>Double-click <strong>app.pyw</strong> — no console window will appear. The app runs silently in the system tray.</p>
+        <ul>
+          <li><strong>Apply now</strong> — forces the current wallpaper to apply immediately</li>
+          <li><strong>Quit</strong> — stops Timepaper</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- 5. Startup -->
+    <details>
+      <summary>Launch at startup</summary>
+      <div class="detail-body">
+        <p>To make Timepaper start automatically with Windows:</p>
+        <ul>
+          <li>Press <strong>Win + R</strong> and type <code style="color:#f0a500">shell:startup</code></li>
+          <li>Drop a shortcut to <strong>app.pyw</strong> into that folder</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- 6. Folder structure -->
+    <details>
+      <summary>Folder structure</summary>
+      <div class="detail-body">
+        <div class="code">Timepaper/
+├── app.pyw
+├── install.bat
+├── requirements.txt
+├── how to use.htm
+└── wallpapers/
+    ├── 08,00.jpg
+    ├── 11,00.png
+    ├── 18,00.jpg
+    └── 21,00.png</div>
+        <div class="note">
+          The <strong>.cache/</strong> folder is created automatically and stores converted JPEG copies of your images.
+          You can safely delete it — it will be recreated on next launch.
+        </div>
+      </div>
+    </details>
+
+    <footer>Timepaper &mdash; made by falko69121</footer>
+
+  </div>
+  <script>
+    document.querySelectorAll('details').forEach((d, i) => {
+      if ([0, 1, 2, 4].includes(i)) d.setAttribute('open', '');
+    });
+  </script>
+</body>
+</html>
